@@ -4,6 +4,7 @@ import sys
 import time
 import csv
 import os
+import keyboard
 from datetime import datetime
 from bleak import BleakClient, BleakScanner
 from bleak.exc import BleakError
@@ -60,6 +61,10 @@ async def run(address, ble_IMU_UUID, index):
             writer.writerow({'timestamp': unix_time, 'Ax,Ay,Az,Gx,Gy,Gz,Mx,My,Mz': s_ble_IMU})
 
             print("Device 1: " + unix_time + ": " + s_ble_IMU)
+
+            # if keyboard.is_pressed('q'):  # if key 'q' is pressed
+            #     print('You Pressed A Key!')
+            #     break  # finishing the loop
 
         arduino_data_file.close()
 

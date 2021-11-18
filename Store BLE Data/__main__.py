@@ -1,4 +1,5 @@
 import os
+import keyboard
 from multiprocessing import Pool
 # https://medium.com/@leportella/how-to-run-parallel-processes-8939dafae81e
 
@@ -16,3 +17,5 @@ if __name__ == '__main__':
 
     pool = Pool(processes=numProcesses)
     pool.map(run_process, processes)
+    if keyboard.is_pressed('q'):  # if key 'q' is pressed
+        print('You Pressed A Key!')
