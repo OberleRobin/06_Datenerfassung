@@ -5,7 +5,6 @@ import time
 import csv
 import os
 import keyboard
-from datetime import datetime
 from bleak import BleakClient, BleakScanner
 from bleak.exc import BleakError
 
@@ -55,12 +54,12 @@ async def run(address, ble_IMU_UUID, index):
             s_ble_IMU = "{0}".format("".join(map(chr, ble_IMU)))
 
             # timestamp for sensor values
-            unix_time = datetime.utcnow().strftime('%Y_%m_%d_%H:%M:%S.%f')[:-3]
+            unix_time = round(time.time() * 1000)
 
             # write data with timestamp into CSV file
             writer.writerow({'timestamp': unix_time, 'Ax,Ay,Az,Gx,Gy,Gz,Mx,My,Mz': s_ble_IMU})
 
-            print("Device 2: " + unix_time + ": " + s_ble_IMU)
+            print("Device 2: ", unix_time, ": " + s_ble_IMU)
 
             # if keyboard.is_pressed('q'):  # if key 'q' is pressed
             #     print('You Pressed A Key!')
